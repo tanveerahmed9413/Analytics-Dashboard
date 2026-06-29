@@ -19,7 +19,7 @@ https://github.com/tanveerahmed9413/Analytics-Dashboard
 
 ![Dashboard](<Screenshot 2026-06-29 161202.png>)
 ![](<Screenshot 2026-06-29 161227.png>)
-![](<Screenshot 2026-06-29 161227-1.png>)
+![](<Screenshot 2026-06-29 161237.png>)
 
 
 
