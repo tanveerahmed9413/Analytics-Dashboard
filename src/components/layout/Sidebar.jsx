@@ -1,4 +1,4 @@
-import { LayoutDashboard, BarChart3, Users } from "lucide-react";
+import { LayoutDashboard, BarChart3, CircleUser,Users } from "lucide-react";
 import Analytics_logo from "../../assets/Analytics_logo.png";
 import { Link, useLocation } from "react-router-dom";
 
@@ -13,8 +13,13 @@ function Sidebar({ sidebarOpen }) {
     },
   
     {
+      name: "Users",
+      icon: <Users size={20}/>,
+      path: "/users",
+    },
+    {
       name: "Profile",
-      icon: <Users size={20} />,
+      icon: <CircleUser size={20} />,
       path: "/profile",
     },
   ];

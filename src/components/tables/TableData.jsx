@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ArrowUpDown, Search, SkipForward, SkipBack } from "lucide-react";
 
-const TableData = ({ data }) => {
+const TableData = ({ data, setData, setAllData, allData }) => {
   const [searchInput, setSearchInput] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
   const [currentPage, setCurrentPage] = useState(1);
@@ -95,6 +95,13 @@ const TableData = ({ data }) => {
     }
   };
 
+  const handleDelete = (id) => {
+    const updatedData = allData.filter((user) => user.id !== id);
+
+    setAllData(updatedData);
+    setData(updatedData);
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-6">
       {/* Header */}
@@ -122,7 +129,7 @@ const TableData = ({ data }) => {
         </div>
       </div>
 
-      {/* Responsive Table */}
+      {/*  Table */}
       <div className="overflow-x-auto min-h-[300px] ">
         <table className="w-full min-w-[800px] lg:min-w-full">
           <thead>
@@ -164,21 +171,14 @@ const TableData = ({ data }) => {
               >
                 Date
               </th>
-              <th
-                className="py-4 px-3 text-left cursor-pointer"
-                onClick={() => {
-                  handleSorting("progress");
-                }}
-              >
-                Progress
-              </th>
+
               <th
                 className="py-4 px-3 text-left cursor-pointer"
                 onClick={() => {
                   handleSorting("quantity");
                 }}
               >
-                Quality
+                Quantity
               </th>
               <th
                 className="py-4 px-3 text-left cursor-pointer"
@@ -188,6 +188,7 @@ const TableData = ({ data }) => {
               >
                 Balance
               </th>
+              <th className="py-4 px-3 text-center">Action</th>
             </tr>
           </thead>
 
@@ -217,29 +218,20 @@ const TableData = ({ data }) => {
 
                 <td className="py-3 px-2 sm:px-3 text-gray-600">{item.date}</td>
 
-                <td className="py-3 px-2 sm:px-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm text-xs sm:text-sm text-gray-700 min-w-[40px]">
-                      {item.progress}%
-                    </span>
-
-                    <div className="w-28  sm:w-28 bg-gray-200 rounded-full h-2">
-                      <div
-                        className="h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"
-                        style={{
-                          width: `${item.progress}%`,
-                        }}
-                      />
-                    </div>
-                  </div>
-                </td>
-
                 <td className="py-3 px-2 sm:px-3 text-xs sm:text-sm text-gray-700">
                   {item.quantity}
                 </td>
 
                 <td className="py-3 px-2 sm:px-3 font-semibold text-gray-800">
                   {item.balance}
+                </td>
+                <td className="py-3 px-3 text-center">
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm transition cursor-pointer"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

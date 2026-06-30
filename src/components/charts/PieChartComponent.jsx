@@ -9,7 +9,7 @@ import {
 } from "recharts";
 
 const PieChartComponent = ({ data }) => {
-  const COLORS = ["#22c55e", "#ef4444", "#f59e0b"];
+  const COLORS = ["#f59e0b", "#ef4444", "#f59e0b"];
 
   const pieData = [
     {

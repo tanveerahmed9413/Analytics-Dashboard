@@ -1,14 +1,16 @@
 import { PanelLeftOpen, Moon, Sun, Search, PanelLeftClose } from "lucide-react";
 import { useContext, useState } from "react";
 
-
-const Navbar = ({ setSidebarOpen, sidebarOpen }) => {
+const Navbar = ({
+  setSidebarOpen,
+  sidebarOpen,
+  openModel,
+  setOpenModel,
   
 
-   
-
+}) => {
   return (
-    <nav className="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700 px-4 sm:px-6 py-4">
+    <nav className="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700 px-4 sm:px-6 py-4">
       <div className="flex items-center justify-between gap-4">
         {/* Left Side */}
         <div className="flex items-center gap-3">
@@ -30,25 +32,12 @@ const Navbar = ({ setSidebarOpen, sidebarOpen }) => {
 
         {/* Right Side */}
         <div className="flex items-center gap-2 sm:gap-4">
-          {/* Search */}
-          {/* <div className="flex md:flex items-center border rounded-lg px-3 py-2 bg-gray-50 dark:bg-slate-800 dark:border-slate-700">
-            <Search size={18} className="text-gray-500" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="ml-2 bg-transparent outline-none text-sm w-full lg:w-60"
-            />
-          </div> */}
-
-          {/* Theme Toggle */}
           <button
-            // onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition"
+            onClick={() => setOpenModel(true)}
+            className="bg-indigo-600 cursor-pointer text-white px-4 py-2 rounded-lg"
           >
-            {/* {darkMode ? <Sun size={20} /> : <Moon size={20} />} */}
+            + Add User
           </button>
-
-         
         </div>
       </div>
     </nav>

@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import { useState, React, useEffect } from "react";
 import KpiGrid from "../components/kpi/KpiGrid";
 import PieChartComponent from "../components/charts/PieChartComponent";
 import BarChartComponent from "../components/charts/BarChartComponent";
@@ -8,20 +8,30 @@ import { Filter } from "lucide-react";
 
 import FilterData from "../components/filters/FilterData";
 import LineChartComponent from "../components/charts/LineChartComponent";
+import AddUserModal from "../components/model/AddUserModel";
 
-const Dashboard = () => {
-  const [data, setData] = useState(tableData);
-  const [allData] = useState(tableData);
+const Dashboard = ({
+  openModel,
+  setOpenModel,
+  data,
+  setData,
+  allData,
+  setAllData,
+}) => {
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(allData));
+  }, [allData]);
 
   const [status, setStatus] = useState("All Status");
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
-  
+
   return (
     <div className="space-y-6">
       <div>
         <FilterData
           allData={allData}
+          setAllData={setAllData}
           status={status}
           fromDate={fromDate}
           toDate={toDate}
@@ -46,11 +56,16 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="bg-white w-full rounded-2xl shadow-sm p-4 overflow-hidden">
-        <LineChartComponent data={data}/>
+        <LineChartComponent data={data} />
       </div>
       {/* Table */}
       <div className="bg-white rounded-2xl shadow-sm p-4 overflow-x-auto">
-        <TableData data={data} setData={setData} />
+        <TableData
+          data={data}
+          setData={setData}
+          allData={allData}
+          setAllData={setAllData}
+        />
       </div>
     </div>
   );
