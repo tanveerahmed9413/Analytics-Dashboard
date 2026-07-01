@@ -23,16 +23,7 @@ const LineChartComponent = ({ data }) => {
           <YAxis />
           <Tooltip />
           <Legend />
-
-          {/* 👇 Multiple lines can be added */}
-          <Line
-            type="monotone"
-            dataKey="quantity"
-            stroke="#22c55e"
-            strokeWidth={2}
-            dot={{ r: 4 }}
-            activeDot={{ r: 6 }}
-          />
+      
           <Line
             type="monotone"
             dataKey="balance"
